@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block navbar %}
+{% include 'includes/__logged_nav_bar.html' %}
+{% endblock %}
+{% block content %}
+
+<title>{% block head %} Update Profile - MindStory {% endblock %}</title>
+<br />
+<!-- <p class="lead">Welcome Home {{ data }}</p> -->
+<!-- <img src="url_for" alt="">
+<img src="{{ url_for('static', filename= data[1] ) }}" alt="1" width="50" height="50">
+{{ data[2] }}
+{{ data[3] }} -->
+<!-- <hr class="my-4"> -->
+<!-- </hr> -->
+<div class="container mb-4">
+    <h2>Update {{ data[2]}}'s profile</h2>
+</div>
+<div class="card container">
+    <div class="card-body">
+        {% if smessage %}
+        <div class="alert alert-success">
+            {{ smessage }}
+        </div>
+        {% endif %}
+        {% if umessage %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ umessage }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete {{data[2]}}'s account</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>  
+                    <form method='post' action='/delete_account/{{email}}' enctype="multipart/form-data">
+                        <div class="modal-body">
+
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Type <meow class="font-weight-bold">
+                                        {{email}}/delete </meow>to delete account permamently:</label>
+                                <input type="text" name = 'check' class="form-control" id="recipient-name" required>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name='submit' class="btn">Delete Permamently</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <form action="/updateprofile" method="post" enctype="multipart/form-data">
+
+            <div class="form-group" id='medical-form'>
+                <label for="exampleprofilepic">Profile Picture:</label>
+                <input type="file" class="form-control" name="profilepic">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address:</label>
+                <input type="email" class="form-control" name="name" placeholder="Enter email"
+                    value="{{email if email}}" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputUsername1">Username</label>
+                <div class="input-group">
+
+                    <span class="input-group-text" id="basic-addon1">@</span>
+
+                    <input type="text" class="form-control" name="username" placeholder="Enter Username"
+                        value="{{data[2] if data[2]}}" aria-label="Username" aria-describedby="basic-addon1" required>
+
+
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label for="exampleInputPassword1"> New Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+
+                <small id="passwordHelpInline" class="text-muted">
+                    Must be at least 8 characters long.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1"> Confirm Password</label>
+                <input type="password" class="form-control" name="password1" placeholder=" Re-enter Password" required>
+
+
+            </div> -->
+
+            <button type="submit" name="submit" class="btn btn-outline-success">Update Profile</button>
+            <a href="/profile" class="btn btn-outline-failed">Cancel</a>
+    </div>
+
+
+</div>
+<div class="container my-5"><button type="button" class="btn btn-danger" data-bs-toggle="modal"
+        data-bs-target="#exampleModal" data-bs-whatever="{{data[2]}}">Delete Account</button>
+</div>
+{% endblock %}

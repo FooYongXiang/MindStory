@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block navbar %} {% include
+'includes/__logged_nav_bar.html' %} {% endblock %} {% block content %}
+
+<title>{% block head %} Profile - MindStory {% endblock %}</title>
+<!-- {% if 'donate_done' in session %}
+<div class="alert alert-success alert-dismissible">
+ <button type="button" class="close" data-dismiss="alert">&times;</button>
+ {{ session.pop('donate_done', None) }}
+{% endif %} -->
+</div>
+<br />
+<div class="container align-middle" style="width: 60%; margin: 0 auto">
+  <div class="d-flex flex-row">
+    <img
+      style="border-radius: 50%"
+      class=""
+      src="{{ url_for('static', filename= data[1] ) }}"
+      alt="1"
+      width="200"
+      height="200"
+    />
+    <div class="container">
+      <h2 class="mt-5 ml-5">{{ data[2]}}</h2>
+      <p class="ml-5 text-secondary">{{ data[3]}}</p>
+    </div>
+    <div
+      class="text-center text-center align-middle my-auto"
+      style="width: 200px"
+    >
+      <div class="link">
+
+                <button type="button" class="link btn btn-outline-primary p-2" data-toggle="modal" data-target="#myModal1">
+          Donate</button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Donate</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <form action="" method="post" style="display:inline">
+              <div class="modal-body d-flex justify-content-around">
+                <button name="donate" value="5" type="submit" class="btn" style="background-color:#283592; color:white;" >$5</button>
+                <button name="donate" value="10" type="submit" class="btn" style="background-color:#283592; color:white;" >$10</button>
+                <button name="donate" value="20" type="submit" class="btn" style="background-color:#283592; color:white;" >$20</button>
+                <button name="donate" value="30" type="submit" class="btn" style="background-color:#283592; color:white;" >$30</button>
+                <button name="donate" value="40" type="submit" class="btn" style="background-color:#283592; color:white;" >$40</button>
+                <button name="donate" value="50" type="submit" class="btn" style="background-color:#283592; color:white;" >$50</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <br> <br>
+  <div style = "display: flex; flex-wrap: wrap; gap:20px ">
+    {% for i in images %}
+    <img src="{{url_for('static', filename=i)}}" style="width:31%; height:auto; object-fit:cover">
+    {% endfor %}    
+</div>
+</div>
+<br />
+{% endblock %}

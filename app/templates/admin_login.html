@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login - MindStory</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.login-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-form h1 {
+    margin-bottom: 30px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+</style>
+</head>
+{% extends "base.html" %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h1>Admin Login</h1>
+            <form id="password-form" method="post" action="/admin">
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+
+    </div>
+    <a href="/" style="text-align:center; display:block" > Back to Home</a>
+</body>
+</html>
+
+{% endblock %}

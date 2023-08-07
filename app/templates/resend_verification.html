@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block head %}Resend Email - MindStory {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Details Sent</title>
+</head>
+
+<body>
+    <div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        
+    {% endif %}
+    {% endwith %}
+    {% if umessage %}
+        <div class="alert alert-danger">
+        {{ umessage }}
+        </div>
+    {% endif %}
+
+    <h1>Resent Verification Email</h1>
+    <hr class="my-4">
+    <form method="post">
+        <label for="email">Email:</label>
+        <input type="email" name="email" placeholder="example@example.com">
+        <br>
+        <label for="exampleInputPassword1">Password: </label>
+        <input type="password" name="password" placeholder="Password" required>
+        <br>
+        <input type="submit" value="Resend Verification Email">
+    
+        
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('create_account') }}">Create one</a></p>
+</body>
+</html>
+{% endblock %}

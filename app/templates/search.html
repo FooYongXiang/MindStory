@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %} Search - MindStory {% endblock %}
+
+{% block navbar %}{% include 'includes/__logged_nav_bar.html' %}{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="display-4">Search</h1>
+<br>
+<div style="width:99%; margin:auto;">
+  <form action="" method="post">
+    <input type="search" name="search_bar" class="form-control" placeholder="Username / Email" aria-label="Search"/>
+  </form>
+</div>
+{% if count == 0 %}
+<h3 class="display-6">User not found, please try again.</h3>
+{% else %}
+<div class="list-group">
+
+  {% for i in found %}
+  {% set the_link = '/public_profile/' + i|string -%}
+  <a href={{the_link}} class="list-group-item list-group-item-action">
+    {{found[i][2]}} |  {{i}} | {{found[i][3]}}</a>
+  {% endfor %}
+</div>
+{% endif %}
+<br> <br>
+{% endblock %}

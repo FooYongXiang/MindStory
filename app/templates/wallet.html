@@ -1,0 +1,109 @@
+{% extends "base.html" %} {% block navbar %} {% include
+'includes/__logged_nav_bar.html' %} {% endblock %} {% block content %}
+{% if 'withdrawal_done' in session %}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('withdrawal_done', None) }}
+</div>
+{% elif 'withdrawal_failed' in session %}
+<div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('withdrawal_failed', None) }}
+</div>
+{% elif 'topup_done' in session %}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('topup_done', None) }}
+</div>
+{% endif %}
+<title>{% block head %} Wallet - MindStory {% endblock %}</title>
+<br />
+
+<div class="container align-middle" style="width:60%; margin: 0 auto">
+  <div class="d-flex flex-row">
+    <img
+      style="border-radius: 50%"
+      class=""
+      src="{{ url_for('static', filename= user_data[1] ) }}"
+      alt="1"
+      width="200"
+      height="200"
+    />
+    <div class="container">
+      <h2 class="mt-5 ml-5">{{ user_data[2]}}</h2>
+      <p class="ml-5 text-secondary">{{ user_data[3]}}</p>
+      <p class="ml-5 text-secondary">Balance: <b>${{ user_data[4]}}</b></p>
+    </div>
+    <div
+      class="text-center text-center align-middle my-auto"
+      style="width: 400px"
+    >
+      <div class="link d-flex flex-row" style="gap: 30px">
+        <!-- <a href="/updateprofile" class="btn btn-outline-primary p-2">Withdrawal</a> -->
+        <button type="button" class="link btn btn-outline-primary p-2" data-toggle="modal" data-target="#myModal1">
+          Top Up</button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Top Up</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <form action="" method="post" style="display:inline">
+              <div class="modal-body d-flex justify-content-around">
+                <button name="topup" value="5" type="submit" class="btn" style="background-color:#283592; color:white;" >$5</button>
+                <button name="topup" value="10" type="submit" class="btn" style="background-color:#283592; color:white;" >$10</button>
+                <button name="topup" value="20" type="submit" class="btn" style="background-color:#283592; color:white;" >$20</button>
+                <button name="topup" value="30" type="submit" class="btn" style="background-color:#283592; color:white;" >$30</button>
+                <button name="topup" value="40" type="submit" class="btn" style="background-color:#283592; color:white;" >$40</button>
+                <button name="topup" value="50" type="submit" class="btn" style="background-color:#283592; color:white;" >$50</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <button type="button" class="link btn btn-outline-primary p-2" data-toggle="modal" data-target="#myModal2">
+          Withdrawal</button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal2">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Withdrawal</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <form action="" method="post" style="display:inline">
+              <div class="modal-body d-flex justify-content-around">
+                <button name="withdrawal" value="5" type="submit" class="btn" style="background-color:#283592; color:white;" >$5</button>
+                <button name="withdrawal" value="10" type="submit" class="btn" style="background-color:#283592; color:white;" >$10</button>
+                <button name="withdrawal" value="20" type="submit" class="btn" style="background-color:#283592; color:white;" >$20</button>
+                <button name="withdrawal" value="30" type="submit" class="btn" style="background-color:#283592; color:white;" >$30</button>
+                <button name="withdrawal" value="40" type="submit" class="btn" style="background-color:#283592; color:white;" >$40</button>
+                <button name="withdrawal" value="50" type="submit" class="btn" style="background-color:#283592; color:white;" >$50</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br />
+{% endblock %}

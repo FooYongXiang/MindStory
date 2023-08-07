@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head %} Story Creation - MindStory {% endblock %}
+
+{% block navbar %}{% include 'includes/__logged_nav_bar.html' %}{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+<br>
+<h1 class="display-4">Create Story</h1>
+<br>
+<form method="POST" action="">
+  <div class="form-group" style="margin-left:5px">
+    {{ render_field(form.image, class="form-control") }}
+  </div>
+  <div class="form-group" style="margin-left:5px">
+    {{ render_field(form.description, class="form-control") }}
+  </div>
+  <input type="submit" value="Submit" style="margin-left:5px" class="btn btn-primary"/>
+</form>
+{% endblock %}

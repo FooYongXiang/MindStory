@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block head %} Transactions Logs - MindStory {% endblock %}
+
+{% block navbar %}{% include 'includes/__logged_nav_bar.html' %}{% endblock %}
+
+{% block content %}
+<body>
+    <style>
+        .row-striped:nth-of-type(odd){
+        background-color: #efefef;
+        }
+
+        .row-striped:nth-of-type(even){
+        background-color: #ffffff;
+        }
+    </style>
+    <br>
+    <h1 class="display-4">Transaction Logs</h1>
+    <br>
+    <div style=" width:96%; margin:0 auto">
+        <div class="row row-striped"style="border:1px solid black;">
+          <div class="col">Transaction ID</div>
+          <!-- <div class="col">Email</div> -->
+          <div class="col">Time</div>
+          <div class="col">Amount ($)</div>
+          <div class="col">Ref No.</div>
+        </div>
+    {% for key, code in codes_data %}
+        {% if code.get_user_email() == user['email'] %}
+        <div class="row row-striped"style="border:1px solid black;">
+          <div class="col">{{key}}</div>
+          <!-- <div class="col">{{code.get_user_email()}}</div> -->
+          <div class="col">{{code.get_date_time()}}</div>
+          <div class="col">{{code.get_amount()}}.00</div>
+          <div class="col">{{code.get_random_code()}}</div>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <br> <br>
+</body>
+
+{% endblock %}

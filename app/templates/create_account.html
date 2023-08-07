@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block head %}Create Account - MindStory {% endblock %}
+{% block content %}
+
+
+    <br/>
+      <div class="jumbotron">
+        <h1 class="display-4">Hey</h1>
+        <p class="lead">Create an account, then you can log in with it!</p>
+        <hr class="my-4">
+        {% if smessage %}
+          <div class="alert alert-success">
+            {{ smessage }}
+          </div>
+        {% endif %}
+        {% if umessage %}
+          <div class="alert alert-danger">
+            {{ umessage }}
+          </div>
+        {% endif %}
+        <form action="/create_account" method="post" enctype="multipart/form-data">
+          <div class="form-group" class="form-control">
+            <label for="exampleInputMedical">I'm a:</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" value = 'option1' id="flexRadioDefault1" required onclick="showFileInput()" {% if option == 'option1' %}checked{% endif %}>
+              <label class="form-check-label" for="flexRadioDefault1">
+                StoryTeller
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" value = 'option2' id="flexRadioDefault2" required onclick="showFileInput()" {% if option == 'option2' %}checked{% endif %} >
+              <label class="form-check-label" for="flexRadioDefault2">
+                Supporter
+              </label>
+            </div>
+
+          </div>
+            <div class="form-group" id = 'medical-form'>
+              <label for="exampleInputMedical">Medical Conditions:</label>
+              <input type="file" class="form-control" name="file">
+
+            </div>
+            <div class="form-group" id = 'medical-form'>
+              <label for="exampleprofilepic">Profile Picture:</label>
+              <input type="file" class="form-control" name="profilepic">
+
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" name="name"  placeholder="Enter email" value = "{{email if email}}" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="exampleInputUsername1">Username</label>
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              
+              <input type="text" class="form-control" name="username"  placeholder="Enter Username" value = "{{username if username}}"  aria-label="Username" aria-describedby="basic-addon1" required>
+            </div></div>
+            <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Create</button>
+        </form>
+     </div>
+     <script>
+          // Initial check and setup
+    window.onload = function () {
+        showFileInput();
+    }
+      function showFileInput() {
+          var fileInput = document.getElementById('medical-form');
+          var option1Radio = document.getElementsByName('flexRadioDefault')[0];
+          var option2Radio = document.getElementsByName('flexRadioDefault')[1];
+
+          if (option1Radio.checked) {
+              fileInput.style.display = 'block';
+          } else {
+              fileInput.style.display = 'none';
+          }
+      }
+
+  </script>
+{% endblock %}

@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block head %} MindStory {% endblock %}</title>
+</head>
+<body>
+    {% block navbar %}{% endblock %}
+    
+  <style>
+    /* Custom CSS to add a gap on the left side of the links */
+    .navbar-nav-gap,#navbarNav > div > ul > li:nth-child(1) > a{
+      margin-left: 20px;
+    }
+  </style>
+<nav class="navbar navbar-expand-lg navbar-light" style = "background-color: white; position: sticky;">
+  <a class="navbar-brand bg-b" style="margin-left: 30px;" href="/"><img src = "{{ url_for('static',filename = 'Logo_Minimalist.jpg') }}" height="50px" width="200px" style="object-fit: cover;"></a>
+  <!-- Add the data-toggle and data-target attributes for the navbar-toggler button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav navbar-nav-gap">
+        <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/faq">FAQ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contactus">Contact Us</a>
+      </li>
+    </ul>
+    <!-- New div to push buttons to the right -->
+    <div class="ml-auto ">
+      <ul class="navbar-nav ">
+        <li class="nav-item active">
+          <a class="nav-link" href="/index">Login</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/create_account" style="margin:0px 20px; border: 2px solid #007bff; 
+          border-radius: 10px; padding: 8px 10px; background-color: #007bff; color: white;transition: all 0.3s ease-in-out; 
+          border-radius: 25px;" onmouseover="this.style.backgroundColor='transparent'; 
+          this.style.color='#007bff';" onmouseout="this.style.backgroundColor='#007bff'; 
+          this.style.color='#fff';">Get Started</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Add the necessary Bootstrap and jQuery JavaScript files -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Inter font-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!--Stykles and main flow-->
+<style>
+    body{
+        font-family: 'Inter', sans-serif!important;
+    }
+    .banner-image {
+        background: url('https://www.minds.org.sg/wp-content/uploads/2020/06/banner-children.jpg');
+        padding: 5rem 3rem 1rem;
+        height: 85vh;
+        filter:brightness(0.6);
+        width: 100%;
+        background-size: 100%;
+        color:white;
+        position:absolute;
+        z-index: -100;
+        background-attachment:fixed;
+
+    }
+    .banner-image2 {
+        background: url('https://www.minds.org.sg/wp-content/uploads/2020/10/Create_exp.jpg');
+        padding: 5rem 3rem 1rem;
+        height: 85vh;
+        filter:brightness(0.6);
+        width: 100%;
+        background-size: 100%;
+        color:white;
+        position:absolute;
+        z-index: -100;
+        background-attachment:fixed;
+
+    }
+    .banner{
+        color:white;
+        height: 85vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+  
+    }
+    .headersjk{
+        font-weight:600;
+        font-size: 40px;
+    }
+    .bodyjk{
+        font-weight:400;
+        font-size: 15px;
+        width:80vw;
+        text-align: center;
+        
+    }
+    .imgjk{
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
+    .headers2jk{
+        font-weight:400;
+        margin-left: 20%;
+        font-size: 15px;
+    }
+    .headers3jk{
+        font-weight:600;
+        font-size: 40px;
+        margin-left: 20%;
+    }
+    .head-banner{
+        font-weight:600;
+        font-size: 50px;
+        
+    }
+    .banner div {
+        padding: 0 50px;
+    }
+    .linkssss{
+        display:flex;
+        justify-content: center;
+        gap:50px;
+        padding: 20px !important;
+    }
+    .body-1 .card{
+        /* background-color: #dcdcdc; */
+        box-shadow: 3px 3px 10px #e3e3e3;
+    }
+    .body-1 .card .card-body .card-text{ 
+        /* background-color: #dcdcdc; */
+        font-size: 14px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="banner align-items-center d-flex flex-column">
+    <div class="banner-image "></div>
+    <div class="head-banner text-center">Unleashing the inner potential of connectivity.</div>
+    <br>
+    <div class="head-description" style = "width:85vw; font-size: 18px;">
+        Connects PWIDs to a supportive community, share their personal stories, gather fundings and be inspired from supportive individuals.
+    </div>
+    <div class="linkssss">
+        <a class="icon-link-hover icon-link text-decoration-none" href="#" style ="color:#89b6e7">
+            Learn more
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+        </a>
+        <a class="icon-link-hover icon-link text-decoration-none" href="/index" style ="color:#89b6e7">
+            Start
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+<br style="line-height: 50px;">
+<div class="body-1 align-items-center d-flex flex-column" >
+    <div class= "headersjk">Our Partners</div>
+    <div class="bodyjk" style = "margin-bottom: 20px;">Our revolutionary platform, where innovation meets collaboration, bringing a new dimension to the world of online assistance.</div>
+    <div>
+        <img style = "margin:0 20" class= "imgjk" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/1200px-Dell_logo_2016.svg.png" alt="dell" title="Dell">
+        <img style = "margin:0 20" src="data:image/png;base64,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" alt="" >
+    </div>
+    <a class="icon-link-hover icon-link text-decoration-none" href="#" style ="color:#005cbe">
+        About Us
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+    </a>
+</div>
+<br style="line-height: 100px;">
+<div class= "headers2jk">Our Services</div>
+<div class= "headers3jk">We provide a range of Services</div>
+<div class="body-1 align-items-center d-flex flex-row justify-content-center" style = "gap:50px; margin-top:20px">
+    
+    <div class="card" style="width: 18rem; height:25rem">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        
+            <span class="material-symbols-outlined text-center" style = "font-size: 80; padding:20px">
+                savings
+                </span>
+        <div class="card-body">
+            <h4 class="card-title text-center">Donation</h4>
+          <p class="card-text">An individualised donor-to-PWID funding system. Donors now have the control over who to fund & how much to fund.</p>
+        </div>
+      </div>
+      
+      <div class="card" style="width: 18rem; height:25rem; ">
+        <span class="material-symbols-outlined text-center"  style = "font-size: 80; padding:20px">
+            account_balance_wallet
+            </span>
+        <div class="card-body">
+            <h4  class="card-title text-center">Centralized Wallet</h4>
+            <p class="card-text">A centralized wallet system, increases efficiency of transaction processing on our platform.</p>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem; height:25rem; ">
+        <span class="material-symbols-outlined text-center" style = "font-size: 80; padding:20px">
+        volunteer_activism
+        </span>
+        <div class="card-body">
+        <h4  class="card-title text-center">Spreading of Love</h4>
+            <p class="card-text">An online story sharing platform, giving every PWID a chance to share their personal stories.</p>
+        </div></div>
+    </div>
+</div>
+<br style="line-height: 50px;">
+<div class="banner d-flex flex-column">
+    <div class="banner-image2"></div>
+    <div class="head-description" style = "width:85vw; font-size: 18px; font-weight: 300;">Our Milestone</div>
+    <br>
+    <div class="head-banner" style = "width:85vw; font-size: 35px; font-weight: 600;">
+        Your generous contribution can make a real difference in the lives of those in need. We are reaching out to you today to invite you to be part of something truly special - a chance to make a positive impact on our community and beyond.
+    </div>
+    <br style="line-height: 50px;">
+    <div style = "padding: 20px; text-align: center; width:250px">
+        <a class="nav-link" href="/home" style="font-weight:600; padding: 12 15px; margin:0px 20px; border: 2px solid #ffffff; 
+        border-radius: 25px; background-color: #ffffff; color: rgb(0, 0, 0);transition: all 0.3s ease-in-out; 
+        border-radius: 25px;" onmouseover="this.style.backgroundColor='transparent'; 
+        this.style.color='#ffffff';" onmouseout="this.style.backgroundColor='#ffffff'; 
+        this.style.color='#000000';">Donate Now</a>
+    </div>
+</div>
+
+
+
+
+<!-- <h1 class = "m-5">Hello!</h1> -->
+<!-- <a class="icon-link icon-link-hover" href="#">
+    Icon link
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+    </svg></a> -->
+<div style="width: 100%;">
+    {% include 'includes/__footer.html' %}</div>
+</body>
+</html>
+{% endblock %}

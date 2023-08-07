@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block head %}Contact Us - MindStory {% endblock %}
+{% block content %}
+<h1 class = "container-fluid m-5 " >Contact Us</h1>
+<div class="accordion container-fluid px-5" id="accordionExample">
+    <form action="/contactus" method="post">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address:</label>
+        <input type="email" name = 'email' class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput2" class="form-label">Name:</label>
+        <input type="text" name = 'name' class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Message:</label>
+        <textarea class="form-control" name='message' id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+    </div>
+    <button type="submit" name="submit" class="btn btn-primary  mx-5 ">Create</button>
+</form>
+
+<div style="width: 100%; margin-top:50px">
+    {% include 'includes/__footer.html' %}</div>
+{% endblock %}

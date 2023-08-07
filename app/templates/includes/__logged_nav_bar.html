@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md" style="box-shadow: 0px 0px 20px rgb(220, 220, 220);">
+  <a class="navbar-brand" href="/">
+    <img src="{{ url_for('static',filename = 'Logo_Minimalist.jpg') }}"  height="50px" width="200px" style="object-fit: cover;">
+  </a>
+  <style>
+    /* Custom CSS for the navbar toggler */
+
+    /* Custom CSS for the collapsed (hamburger) menu */
+    .navbar-toggler {
+      margin-bottom: 8px; /* Add some vertical spacing when collapsed */
+    }
+
+    .navbar_log li a{
+      display: inherit;
+
+    }
+    .navbar-nav .nav-link i {
+      margin-right: 8px; /* Add horizontal spacing between the icons and link text */
+    }
+
+  </style>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Push all icons to the right -->
+      <ul class="navbar-nav ml-auto align-items-center navbar_log">
+          <li class="nav-item"><a class="nav-link" href="/home"><i class="fas fa-home fa-lg"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/story_creation"><i class="fas fa-plus fa-lg"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/search"><i class="fas fa-search fa-lg"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/view_transaction_codes"><i class="fas fa-chart-line fa-lg"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/live_chat"><i class="fa-solid fa-comments fa-lg"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/wallet"><i class="fas fa-wallet fa-lg"></i></a></li>
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-user fa-lg"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="/profile">View Profile</a>
+                  <a class="dropdown-item" href="/logout">Sign Out</a>
+              </div>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<!-- Include the necessary JavaScript files -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

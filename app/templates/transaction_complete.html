@@ -1,0 +1,59 @@
+{% if 'donation_done' in session %}
+<div class="alert alert-success alert-dismissible" style="text-align:center">
+    <br>
+  <h2>{{ session.pop('donation_done', None) }}</h2>
+</div>
+{% endif %}
+<style>
+body {
+    background-color: #fff;
+}
+
+h1   {
+    font-family: Inter;
+    font-weight: bold;
+      }
+
+h2   {
+    font-family: Inter;
+    font-weight: normal;
+      }
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+        }
+
+#receipt {
+    font-family: Inter;
+    font-weight: 100;
+    text-decoration: underline dotted grey;
+
+}
+
+
+</style>
+
+<html>
+    <head><title>Transaction Complete - MindStory</title></head>
+<body>
+        <div style="text-align: center;">
+<br><br><br><br>
+    <h1 style="font-size:40px;">Thank you for your transaction!</h1></center>
+<br><br><br><br>
+    <h2>{{ random_code }}</h2>
+<br>
+    <a href="{{ url_for('home') }}"><button>Back to Home</button></a>
+<br><br><br>
+    <a href="{{ url_for('contactus') }}" id="receipt">Generate Receipt</a>
+
+</div>
+</body>
+
+</html>

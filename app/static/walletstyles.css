@@ -1,0 +1,79 @@
+body {
+    font-family: Inter;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    width: 100%;
+    margin: 0px auto;
+}
+
+/* Left Side */
+.left-side {
+    float: left;
+    width: 30%;
+
+}
+
+#profile-picture {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+/* Right Side */
+.right-side {
+    float: right;
+    width: 70%;
+
+}
+
+.top-line h1{
+    font-weight:bold;
+}
+
+
+.top-line{
+    display:flex;
+}
+
+.top-line p{
+    margin-left:50px;
+}
+
+.wallet-button{
+    padding: 10px 50px;
+    font-size: 30px;
+    color: #ffffff;
+    background-color: #8540F5;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#b1{
+    margin-left: 20px;
+}
+
+#b2{
+    margin-left: 40px;
+}
+
+.bottom-line{
+    display: flex;
+}
+
+/* Dashboard */
+.wallet-dashboard{
+    clear:both; /* Removes it from being below the buttons */
+    width: 100%;
+    margin: 0px auto;
+    margin-left: 60px;
+
+}
+
+.wallet-dashboard h1{
+    font-weight: bold;
+}

@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block actualhead %}
+<head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{% block head %}Home - MindStory {% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            .link { color: #283592; text-decoration: none;} /* CSS link color */
+
+        </style>
+</head>
+{% endblock %}
+
+{% block navbar %}{% include 'includes/__logged_nav_bar.html' %}{% endblock %}
+
+{% block content %}
+
+
+{% if 'story_created' in session %}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('story_created', None) }}
+</div>
+{% elif 'donation_fail' in session %}
+<div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('donation_fail', None) }}
+</div>
+{% elif 'access_denied' in session %}
+<div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('access_denied', None) }}
+</div>
+{% endif %}
+
+<br>
+<h1 class="display-4">Home</h1>
+<br>
+
+{% set counter = count -%}
+{% for i in range(counter) %}
+    {% set my_story = stories_id[i] -%}
+    <div class="card" style="width:50%; margin:auto; min-width:300px">
+      <img class="card-img-top img-responsive" src={{images[i]}} alt="Story image">
+      <div class="card-body">
+        {% set the_link = '/public_profile/' + storytellers[i]|string -%}
+        <a href={{the_link}} class="link"><h5 class="card-title">{{usernames[i]}}</h5></a>
+        <p class="card-text">{{infos[i]}}</p>
+        <h6 class="card-text">{{likes[i]}} likes,  {{comments_length[i]}} comments</h6><br>
+
+        <button type="button" class="link" data-toggle="modal" data-target="#myModal"
+                style="border:none;background-color: transparent;">
+          <i class="fa-solid fa-circle-dollar-to-slot fa-xl" style="padding-right:3px"></i></button>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Donate Me!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <form action="" method="post" style="display:inline">
+              <input type="text" value={{my_story}} style="display:none" name="counter">
+              <div class="modal-body d-flex justify-content-around">
+                <button name="donate_amount" value="5" type="submit" class="btn" style="background-color:#283592; color:white;" >$5</button>
+                <button name="donate_amount" value="10" type="submit" class="btn" style="background-color:#283592; color:white;" >$10</button>
+                <button name="donate_amount" value="20" type="submit" class="btn" style="background-color:#283592; color:white;" >$20</button>
+                <button name="donate_amount" value="30" type="submit" class="btn" style="background-color:#283592; color:white;" >$30</button>
+                <button name="donate_amount" value="40" type="submit" class="btn" style="background-color:#283592; color:white;" >$40</button>
+                <button name="donate_amount" value="50" type="submit" class="btn" style="background-color:#283592; color:white;" >$50</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <form action="" method="post" style="display:inline">
+        <button type="submit" class="link"  style="padding-right:12px; border:none;background-color: transparent;"><i class="fa-solid fa-heart fa-xl"></i></button>
+        <input type="text" value={{my_story}} style="display:none" name="counter">
+        </form>
+
+        {% set the_var = '#' + 'a' + i|string %}
+        {% set a_var = 'a' + i|string %}
+        {% set my_comments = comments[i] -%}
+        <button type="button" class="link" data-toggle="modal" data-target={{the_var}}
+                style="border:none;background-color: transparent;">
+          <i class="fa-solid fa-comment fa-xl"></i></button>
+
+        <!-- The Modal -->
+        <div class="modal" id={{a_var}}>
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Donate Me!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <form action="" method="post" style="display:inline">
+              <ul class="list-group">
+                {% for comment in my_comments %}
+                  <li class="list-group-item">{{comment}}</li>
+                {% endfor %}
+              </ul>
+              <br>
+              <div class="form-group">
+                <label for="comment">&nbsp;&nbsp;Enter Comment:</label>
+                <textarea class="form-control" rows="3" id="comment" name="my_comment"></textarea>
+                <input type="text" value={{my_story}} style="display:none" name="counter">
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer" style="border:None">
+                <input type="submit" value="Submit" class="btn" style="background-color:#283592; color:white;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        {% if user['email'] == storytellers[i] %}
+        {% set the_delete_var = '#' + 'b' + i|string %}
+        {% set a_delete_var = 'b' + i|string %}
+        <button type="button" class="link" data-toggle="modal" data-target={{the_delete_var}}
+                style="border:none;background-color: transparent;position: absolute;bottom: 26px; right: 20px;">
+          <i class="fa-solid fa-trash fa-xl" style="color:#e01b84"></i></button>
+
+        <!-- The Modal -->
+        <div class="modal" id={{a_delete_var}}>
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Delete Story?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                Are you sure you want to delete this story?
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer" style="border:None">
+                <form action="" method="post" style="display:inline">
+                <input type="text" value={{my_story}} style="display:none" name="counter">
+                <input name="delete" type="submit" value="Delete" class="btn" style="background-color:#e01b84; color:white;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+    <br>
+{% endfor %}
+
+
+{% endblock %}
+

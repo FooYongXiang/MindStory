@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block navbar %} {% include
+'includes/__logged_nav_bar.html' %} {% endblock %} {% block content %}
+
+<title>{% block head %} Profile - MindStory {% endblock %}</title>
+<br />
+
+<div class="container align-middle" style="width: 60%; margin: 0 auto">
+  <div class="d-flex flex-row">
+    <img
+      style="border-radius: 50%"
+      class=""
+      src="{{ url_for('static', filename= data[1] ) }}"
+      alt="1"
+      width="200"
+      height="200"
+    />
+    <div class="container">
+      <h2 class="mt-5 ml-5">{{ data[2]}}</h2>
+      <p class="ml-5 text-secondary">{{ data[3]}}</p>
+    </div>
+    <div
+      class="text-center text-center align-middle my-auto"
+      style="width: 200px"
+    >
+      <div class="link">
+        <a href="/updateprofile" class="btn btn-outline-primary p-2"
+          >Update Profile</a
+        >
+      </div>
+    </div>
+  </div>
+  <br> <br>
+  <div style = "display: flex; flex-wrap: wrap; gap:20px ">
+    {% for i in images %}
+    <img src="{{url_for('static', filename=i)}}" style="width:31%; height:auto; object-fit:cover">
+    {% endfor %}    
+</div>
+</div>
+<br />
+{% endblock %}
