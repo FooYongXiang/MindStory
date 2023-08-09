@@ -194,7 +194,7 @@ def public_profile(email):
             users = db['Users']
             if int(request.form.get('donate')) > users[session['user']['email']][4]: 
                 session['donate_fail'] = ("Donation failed, insufficient balance.")
-                return redirect(url_for('public_profile'))
+                return redirect(url_for('public_profile', email=email))
             users[session['user']['email']][4] -= int(request.form.get('donate'))
             users[email][4] += int(request.form.get('donate'))
             db['Users'] = users
