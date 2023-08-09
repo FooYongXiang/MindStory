@@ -132,8 +132,6 @@ def home():
     if stories == None:
         stories = {}
         db['Stories'] = stories
-
-
     users = db['Users']
     db.close()
     images = []
@@ -184,3 +182,45 @@ def search():
                     found[i] = users[i]
         count = len(found)
     return render_template('search.html', user=session['user'], found=found, count=count)
+
+
+@app.route('/public_profile/<string:email>', methods=['GET', 'POST'])
+def public_profile(email):
+    if 'user' not in session:
+        return redirect(url_for('index'))
+    if request.method == 'POST' and request.form.get('donate') != None:
+        
+        with shelve.open('storage.db') as db:
+            users = db['Users']
+            if int(request.form.get('donate')) > users[session['user']['email']][4]: 
+                session['donate_fail'] = ("Donation failed, insufficient balance.")
+                return redirect(url_for('public_profile'))
+            users[session['user']['email']][4] -= int(request.form.get('donate'))
+            users[email][4] += int(request.form.get('donate'))
+            db['Users'] = users
+        
+        with shelve.open('transaction_code') as shelf:
+            random_code1 = generate_random_code()
+            transaction_log1 = Transaction(-int(request.form.get('donate')), session['user']['email'], random_code1)
+            code_index = len(shelf) + 1
+            shelf[f'trans{code_index}'] = transaction_log1
+            transaction_log2 = Transaction(int(request.form.get('donate')), email, random_code1)
+            code_index = len(shelf) + 1
+            shelf[f'trans{code_index}'] = transaction_log2
+        # session['donate_done'] = 'Successfully donated $' + request.form.get('donate')
+        return render_template('transaction_complete.html', random_code=random_code1)
+    db = shelve.open('storage.db', 'c')
+    try:
+        users_dict = db['Users']
+        user_stories = db['Stories']
+    except:
+        print("Error in retrieving Users from storage.db.")
+        users_dict = {}
+    data = users_dict[email]
+    images = []
+    for i in user_stories:
+        if user_stories[i].get_storyteller() == email:
+            images.append(user_stories[i].get_image() )
+
+    db.close()
+    return render_template('public_profile.html',data=data, images=images)
