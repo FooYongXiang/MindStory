@@ -55,7 +55,7 @@
 <body style="text-align:center; font-family: Arial, serif; font-size: 14pt;">
     <script type="text/javascript">
         $(document).ready(function () {
-            var socket = io.connect("http://127.0.0.1:5000")
+            var socket = io.connect("https://mindstory.apps.tas.cnasg.dellcsc.com:80")
             socket.on('connect', function () {
                 socket.send("User connected!")
             });
