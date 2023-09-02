@@ -1,5 +1,5 @@
 Hi Guys!
-This is MindStory Project by Team Conserfate.
+This is MindStory Project by Team Conserfate. Deployed on https://mindstory.apps.tas.cnasg.dellcsc.com/. Live chat page and image of story creation page unable to work, sorry for the inconvenience! :') 
 
 Instructions:
 1. We recommend you to open our project on VSCode, not PyCharm. When we tried running our web application on PyCharm, some of our images are not showing, because sometimes the OS module on PyCharm is not working.
