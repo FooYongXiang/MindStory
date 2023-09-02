@@ -22,10 +22,10 @@ import random
 import string
 from flask_turnstile import Turnstile
 
-turnstile = Turnstile(app=app, site_key='0x4AAAAAAAIVelz-MEf-eq0f', secret_key='0x4AAAAAAAIVesK957a_hC-dRLA1TFNHvJs',
-                      is_enabled=False)
+turnstile = Turnstile(app=app, site_key='0x4AAAAAAAJkqo2mD4-WN2je', secret_key='0x4AAAAAAAJkqvnY3N8OVHjorcA6A8Aj4Sw',
+                      is_enabled=True)
 turnstile.init_app(app)
-app.config['UPLOAD_DIRECTORY'] = 'mindstory/app/static/'
+app.config['UPLOAD_DIRECTORY'] = 'app/static/'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 app.config['ALLOWED_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif']
 
@@ -75,14 +75,14 @@ def index():
                 session['password']=password
                 
                 print(session['user'])
-                return redirect(url_for("home"))
-                # if turnstile.verify():
-                #     # SUCCESS
-                #     return redirect(url_for("home"))
+                # return redirect(url_for("home"))
+                if turnstile.verify():
+                    # SUCCESS
+                    return redirect(url_for("home"))
 
-                # else:
-                #     # FAILED
-                #     return render_template('index.html', umessage="Please verify that you are not a bot", email=email)
+                else:
+                    # FAILED
+                    return render_template('index.html', umessage="Please verify that you are not a bot", email=email)
 
             else:
                 verification_pending = 'Email verification is pending. Please check your email for the verification link.'
