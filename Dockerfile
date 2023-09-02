@@ -2,7 +2,7 @@ FROM python:3.10
 
 WORKDIR /mindstory
 
-COPY ./mindtory/requirements.txt .
+COPY ./mindstory/requirements.txt .
 
 RUN pip install -r requirements.txt
 
